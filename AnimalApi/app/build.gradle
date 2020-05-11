@@ -2,10 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 
     defaultConfig {
         applicationId "com.example.animalapi"
@@ -24,6 +29,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 def lifeCycleExtensionVersion = '2.2.0'
@@ -36,8 +45,6 @@ def daggerVersion = '2.16'
 def mockitoVersion = '2.11.0'
 
 dependencies {
-
-
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -76,6 +83,9 @@ dependencies {
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     kaptTest "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    implementation "androidx.preference:preference-ktx:1.1.1"
+    implementation 'com.takisoft.preferencex:preferencex:1.1.0'
 
 
     testImplementation 'junit:junit:4.12'
